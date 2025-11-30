@@ -1,4 +1,4 @@
-apiVersion: cilium.io/v2
+apiVersion: cilium.io/v2 
 kind: CiliumNetworkPolicy
 metadata:
   name: only-http-from-frontend
@@ -7,10 +7,12 @@ spec:
     matchLabels:
       app: frontend-service
   egress:
-    - toEntities:
-      - world
+    - toEndpoints:
+        - matchLabels:
+            app: backend-service
       toPorts:
-        - port: '80'
-          protocol: 'TCP'
-        - port: '443'
-          protocol: 'TCP'
+        - ports:
+          - port: '80'
+            protocol: 'TCP'
+          - port: '443'
+            protocol: 'TCP'

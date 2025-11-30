@@ -1,7 +1,7 @@
 apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
-  name: allow-frontend-to-backend
+  name: allow-get-block-post
 spec:
   endpointSelector:
     matchLabels:
@@ -12,12 +12,14 @@ spec:
             app: frontend-service
       toPorts:
         - ports:
-          - port: '80'
-            protocol: 'TCP'
-          - port: '443'
-            protocol: 'TCP'
+            - port: '80'
+              protocol: 'TCP'
+            - port: '443'
+              protocol: 'TCP'
           rules:
             http:
               - method: GET
-              - method: POST 
-                action: DENY
+  egress:
+    - toEndpoints:
+      - matchLabels:
+          app: frontend-service

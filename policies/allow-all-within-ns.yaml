@@ -2,6 +2,7 @@ apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: allow-all-within-ns-policy
+  namespace: tenant-a
 spec:
   endpointSelector: {}
   egress:

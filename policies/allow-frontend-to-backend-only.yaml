@@ -11,3 +11,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app: frontend-service
+  egress:
+    - toEndpoints:
+      - matchLabels:
+          app: frontend-service
